@@ -1,4 +1,4 @@
-from pits.models import LiquorSample, Pit, User, Yard
+from pits.models import LiquorSample, Pit, User, VisibilitySetting, Yard
 
 
 def seed_demo() -> None:
@@ -10,6 +10,9 @@ def seed_demo() -> None:
     worker.role = "worker"
     worker.set_password("123456")
     worker.save()
+    # 显隐开关全库只留一版；不存在时按默认全开补上
+    if not VisibilitySetting.objects.exists():
+        VisibilitySetting.objects.create()
     if Yard.objects.exists():
         return
     yard = Yard.objects.create(name="南冈鞣场", village="青皮村")

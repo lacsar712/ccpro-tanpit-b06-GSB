@@ -39,3 +39,13 @@ class LiquorSample(models.Model):
     taken_at = models.DateTimeField(auto_now_add=True)
     ph = models.FloatField()
     operator = models.CharField(max_length=64, blank=True)
+
+
+class VisibilitySetting(models.Model):
+    """坑态显隐开关：全库只留一版（单行），酸碱谱与酸碱台账都按它过滤。"""
+
+    show_fill = models.BooleanField(default=True)
+    show_tanning = models.BooleanField(default=True)
+    show_drained = models.BooleanField(default=True)
+    updated_by = models.CharField(max_length=64, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
